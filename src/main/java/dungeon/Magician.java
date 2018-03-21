@@ -1,26 +1,16 @@
 package dungeon;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Magician extends Character {
 
-    private ArrayList<HashMap<String, Integer>> spells = new ArrayList<>();
+    private ArrayList<Spell> spells = new ArrayList<>();
     private String philters[] = new String[3];
     private int philterCount = 0;
 
     public int getPhilterCount() {
         return philterCount;
-    }
-
-    public ArrayList getSpells() {
-        return spells;
-    }
-
-    public void setSpells(HashMap newSpell) {
-        this.spells.add(newSpell);
     }
 
     public String[] getPhilters() {
@@ -41,17 +31,25 @@ public class Magician extends Character {
         setStrength(strength);
     }
 
+    public void addSpell() {
+        System.out.println("Enter the name of your Spell : ");
+        Scanner sc = new Scanner(System.in);
+        String nameOfSpell = sc.nextLine();
+
+        Integer randomNum = ThreadLocalRandom.current().nextInt(0, 11);
+        System.out.println("Your " + nameOfSpell + " has the random strength of : " + randomNum + "\n");
+
+        Spell spell = new Spell(nameOfSpell, randomNum);
+        spells.add(spell);
+    }
+
     @Override
     public void displayCharacter() {
         super.displayCharacter();
-        // Display weapons in the weapons Array
-        System.out.println("\n***** Magic Spells *****");
-        for (HashMap spell : spells) {
-            Set<Map.Entry<String, Integer>> entrySet = spell.entrySet();
-            for (Map.Entry entry : entrySet) {
-                System.out.println("Your spell's name is : " + entry.getKey());
-                System.out.println("Your spell strength : " + entry.getValue());
-            }
+        // Display spells in the spells Array
+        System.out.println("\n***** Magician's Spells *****");
+        for (Spell spell : spells) {
+            System.out.println(spell.toString());
         }
         // Display Shields in the shields Array
         System.out.println("\n***** Magic Philters *****");

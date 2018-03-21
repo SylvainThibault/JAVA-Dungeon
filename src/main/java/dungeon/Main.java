@@ -1,7 +1,6 @@
 package dungeon;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -26,8 +25,10 @@ public class Main {
                     switch (newCharacterType) {
                         case "Warrior":
                             Warrior newWarrior = new Warrior(newCharacterName, newCharacterStrength);
-                            HashMap newWarriorWeapon = newGame.chooseNameOfWeapon();
-                            newWarrior.setWeapons(newWarriorWeapon);
+                            newWarrior.addWeapon();
+                            while (newGame.addAnotherWeapon()) {
+                                newWarrior.addWeapon();
+                            }
                             String newWarriorShield = newGame.addShield();
                             newWarrior.setShield(newWarriorShield);
                             while (newGame.addAnotherShield()) {
@@ -43,8 +44,10 @@ public class Main {
                             break;
                         case "Magician":
                             Magician newMagician = new Magician(newCharacterName, newCharacterStrength);
-                            HashMap newMagicianSpell = newGame.chooseNameOfWeapon();
-                            newMagician.setSpells(newMagicianSpell);
+                            newMagician.addSpell();
+                            while (newGame.addAnotherWeapon()) {
+                                newMagician.addSpell();
+                            }
                             String newMagicianPhilter = newGame.addPhilter();
                             newMagician.setPhilter(newMagicianPhilter);
                             while (newGame.addAnotherPhilter()) {
@@ -100,7 +103,11 @@ public class Main {
                     }
                     startMenuChoice = 0;
                     break;
+                case 4:
+                    System.out.println("Delete Character");
+                    startMenuChoice = 0;
+                    break;
             }
-        } while (startMenuChoice != 4);
+        } while (startMenuChoice != 5);
     }
 }

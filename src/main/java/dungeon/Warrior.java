@@ -1,27 +1,17 @@
 package dungeon;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Warrior extends Character {
 
-    private ArrayList<HashMap<String, Integer>> weapons = new ArrayList();
+    ArrayList<Weapon> weapons = new ArrayList<>();
     private String shields[] = new String[3];
     private int shieldCount = 0;
 
     public int getShieldCount() {
         return shieldCount;
-    }
-
-    public ArrayList getWeapons() {
-        return weapons;
-    }
-
-    public void setWeapons(HashMap newWeapon) {
-        this.weapons.add(newWeapon);
     }
 
     public String[] getShields() {
@@ -42,20 +32,28 @@ public class Warrior extends Character {
         setStrength(strength);
     }
 
+    public void addWeapon() {
+        System.out.println("Enter the name of your Weapon : ");
+        Scanner sc = new Scanner(System.in);
+        String nameOfWeapon = sc.nextLine();
+
+        Integer randomNum = ThreadLocalRandom.current().nextInt(0, 11);
+        System.out.println("Your " + nameOfWeapon + " has the random strength of : " + randomNum + "\n");
+
+        Weapon weapon = new Weapon(nameOfWeapon, randomNum);
+        weapons.add(weapon);
+    }
+
     @Override
     public void displayCharacter() {
         super.displayCharacter();
-        // Display weapons in the weapons Array
-        System.out.println("\n***** Warrior's weapon *****");
-        for (HashMap weapon : weapons) {
-            Set<Map.Entry<String, Integer>> entrySet = weapon.entrySet();
-            for (Map.Entry entry : entrySet) {
-                System.out.println("Your weapon's name is : " + entry.getKey());
-                System.out.println("Your weapon strength : " + entry.getValue());
-            }
+        // Display Weapons
+        System.out.println("\n***** Warrior's weapons *****");
+        for (Weapon weapon : weapons) {
+            System.out.println(weapon.toString());
         }
         // Display Shields in the shields Array
-        System.out.println("\n***** Warrior's shields *****");
+        System.out.println("\n***** Warrior's Shields *****");
         for (int i = 0; i < shields.length; i++) {
             if (shields[i] != null) {
                 System.out.println(shields[i]);

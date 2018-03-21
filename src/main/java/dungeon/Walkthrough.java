@@ -12,7 +12,8 @@ public class Walkthrough {
         System.out.println("1. Create Character");
         System.out.println("2. Display Character(s)");
         System.out.println("3. Edit Character");
-        System.out.println("4. Exit this awesome game");
+        System.out.println("4. Delete Character");
+        System.out.println("5. Exit this awesome game");
         Scanner sc = new Scanner(System.in);
         Byte startChoice = sc.nextByte();
         switch (startChoice) {
@@ -24,8 +25,10 @@ public class Walkthrough {
                 return 3;
             case 4:
                 return 4;
+            case 5:
+                return 5;
         }
-        return 0 ;
+        return 0;
     }
 
     public String chooseTypeOfCharacter() {
@@ -55,22 +58,19 @@ public class Walkthrough {
     }
 
     public Integer setRandomCharacterStrength() {
-        Integer randomNum = ThreadLocalRandom.current().nextInt(0 , 6);
-        System.out.println("Your Character has the random strength of : " + randomNum +"\n");
+        Integer randomNum = ThreadLocalRandom.current().nextInt(0, 6);
+        System.out.println("Your Character has the random strength of : " + randomNum + "\n");
         return randomNum;
     }
 
-    public HashMap chooseNameOfWeapon() {
-        HashMap<String, Integer> weapon = new HashMap();
-        System.out.println("Enter the name of your Weapon or Spell : ");
+    public boolean addAnotherWeapon() {
+        System.out.println("Do you want to add a weapon or spell ? (y/n)");
         Scanner sc = new Scanner(System.in);
-        String nameOfWeapon = sc.nextLine();
-
-        Integer randomNum = ThreadLocalRandom.current().nextInt(0 , 11);
-        System.out.println("Your " + nameOfWeapon + " has the random strength of : " + randomNum +"\n");
-
-        weapon.put(nameOfWeapon, randomNum);
-        return weapon;
+        char answerWeapon = sc.nextLine().charAt(0);
+        if (answerWeapon == 'y') {
+            return true;
+        }
+        return false;
     }
 
     public String addShield() {
@@ -86,7 +86,7 @@ public class Walkthrough {
         System.out.println("Do you want to add a shield ? (y/n)");
         Scanner sc = new Scanner(System.in);
         char answerShield = sc.nextLine().charAt(0);
-        if(answerShield == 'y'){
+        if (answerShield == 'y') {
             return true;
         }
         return false;

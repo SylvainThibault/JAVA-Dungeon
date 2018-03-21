@@ -62,10 +62,10 @@ public abstract class Character {
 
     public String toString() {
         return
-        "\n***** " + this.getName() + " *****" +
-        "\nYour character's name is : " + this.getName() +
-        "\nYour character's life is : " + this.getLife() +
-        "\nYour character's strength is : " + this.getStrength();
+                "\n***** " + this.getName() + " *****" +
+                        "\nYour character's name is : " + this.getName() +
+                        "\nYour character's life is : " + this.getLife() +
+                        "\nYour character's strength is : " + this.getStrength();
     }
 
     public void editCharacter() {
@@ -81,7 +81,7 @@ public abstract class Character {
                     String newName = sc.nextLine();
                     this.setName(newName);
                     System.out.println("Your character's new Name is : " + newName + "\n");
-                    stuffToEdit = 0 ;
+                    stuffToEdit = 0;
                     break;
                 case 2:
                     System.out.println("Set a new Life :");
@@ -89,7 +89,7 @@ public abstract class Character {
                     int newLife = sc2.nextInt();
                     this.setLife(newLife);
                     System.out.println("Your character's new Life is set to : " + newLife + "\n");
-                    stuffToEdit = 0 ;
+                    stuffToEdit = 0;
                     break;
                 case 3:
                     System.out.println("Set a new Strength :");
@@ -97,7 +97,7 @@ public abstract class Character {
                     int newStrength = sc3.nextInt();
                     this.setStrength(newStrength);
                     System.out.println("Your character's new Strength is set to : " + newStrength + "\n");
-                    stuffToEdit = 0 ;
+                    stuffToEdit = 0;
                     break;
             }
         } while (stuffToEdit != 4);
