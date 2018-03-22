@@ -2,6 +2,9 @@ package dungeon;
 
 import java.util.Scanner;
 
+/**
+ * The type Character.
+ */
 public abstract class Character {
 
     /**
@@ -15,12 +18,18 @@ public abstract class Character {
 
     /**
      * Declaration des getters et setters
+     *
+     * @return the name
      */
-
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -33,22 +42,45 @@ public abstract class Character {
 //        this.image = image;
 //    }
 
+    /**
+     * Gets life.
+     *
+     * @return the life
+     */
     public Integer getLife() {
         return life;
     }
 
+    /**
+     * Sets life.
+     */
     public void setLife() {
         this.life = 100;
     }
 
+    /**
+     * Sets life.
+     *
+     * @param life the life
+     */
     public void setLife(int life) {
         this.life = life;
     }
 
+    /**
+     * Gets strength.
+     *
+     * @return the strength
+     */
     public Integer getStrength() {
         return strength;
     }
 
+    /**
+     * Sets strength.
+     *
+     * @param strength the strength
+     */
     public void setStrength(Integer strength) {
         this.strength = strength;
     }
@@ -68,15 +100,21 @@ public abstract class Character {
                         "\nYour character's strength is : " + this.getStrength();
     }
 
+
+    /**
+     * Edit character.
+     */
     public void editCharacter() {
-        int stuffToEdit = this.editMenu();
+        Walkthrough editMenu = new Walkthrough();
+        int stuffToEdit = editMenu.editMenu();
+
         do {
             switch (stuffToEdit) {
                 case 0:
-                    stuffToEdit = this.editMenu();
+                    stuffToEdit = editMenu.editMenu();
                     break;
                 case 1:
-                    System.out.println("Enter a new Name :");
+                    System.out.println("\nEnter a new Name :");
                     Scanner sc = new Scanner(System.in);
                     String newName = sc.nextLine();
                     this.setName(newName);
@@ -84,7 +122,7 @@ public abstract class Character {
                     stuffToEdit = 0;
                     break;
                 case 2:
-                    System.out.println("Set a new Life :");
+                    System.out.println("\nSet a new Life :");
                     Scanner sc2 = new Scanner(System.in);
                     int newLife = sc2.nextInt();
                     this.setLife(newLife);
@@ -92,7 +130,7 @@ public abstract class Character {
                     stuffToEdit = 0;
                     break;
                 case 3:
-                    System.out.println("Set a new Strength :");
+                    System.out.println("\nSet a new Strength :");
                     Scanner sc3 = new Scanner(System.in);
                     int newStrength = sc3.nextInt();
                     this.setStrength(newStrength);
@@ -103,24 +141,4 @@ public abstract class Character {
         } while (stuffToEdit != 4);
     }
 
-    private int editMenu() {
-        System.out.println("What do you want to edit ?");
-        System.out.println("1. Edit Name");
-        System.out.println("2. Edit Life");
-        System.out.println("3. Edit strength");
-        System.out.println("4. Exit");
-        Scanner sc = new Scanner(System.in);
-        Byte editChoice = sc.nextByte();
-        switch (editChoice) {
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 3;
-            case 4:
-                return 4;
-        }
-        return 0;
-    }
 }

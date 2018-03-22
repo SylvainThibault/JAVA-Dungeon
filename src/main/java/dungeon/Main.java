@@ -3,7 +3,15 @@ package dungeon;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Main.
+ */
 public class Main {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
         ArrayList<Character> Characters = new ArrayList<>();
@@ -17,7 +25,7 @@ public class Main {
                 case 0:
                     startMenuChoice = newGame.startMenu();
                     break;
-                case 1:
+                case 1: // Create Character
                     String newCharacterType = newGame.chooseTypeOfCharacter();
                     String newCharacterName = newGame.chooseNameOfCharacter();
                     Integer newCharacterStrength = newGame.setRandomCharacterStrength();
@@ -36,7 +44,7 @@ public class Main {
                                     newWarriorShield = newGame.addShield();
                                     newWarrior.setShield(newWarriorShield);
                                 } else {
-                                    System.out.println("Yo baggo'shields is full, yo! \n");
+                                    System.out.println("Yo baggo'shields is full, yo!");
                                     break;
                                 }
                             }
@@ -55,7 +63,7 @@ public class Main {
                                     newMagicianPhilter = newGame.addPhilter();
                                     newMagician.setPhilter(newMagicianPhilter);
                                 } else {
-                                    System.out.println("Yo baggo'Philters is full, yo! \n");
+                                    System.out.println("Yo baggo'Philters is full, yo!");
                                     break;
                                 }
                             }
@@ -65,46 +73,54 @@ public class Main {
                     startMenuChoice = 0;
                     break;
 
-                case 2:
+                case 2: // Display Character
                     if (!Characters.isEmpty()) {
                         for (Character Character : Characters) {
                             Character.displayCharacter();
                         }
                     } else {
-                        System.out.println("There is no Character to display \n");
+                        System.out.println("There is no Character to display");
                         startMenuChoice = 0;
                         break;
                     }
                     startMenuChoice = 0;
                     break;
 
-                case 3:
+                case 3: // Edit Character
                     Character CharacterToEdit = null;
                     if (!Characters.isEmpty()) {
-                        System.out.println("Which character do you want to edit ?");
+                        System.out.println("Which character do you want to Edit ? (type the number of the character)");
                         for (int i = 0; i < Characters.size(); i++) {
-                            System.out.println(Characters.get(i).getName());
+                            int indexOfCharacter = Characters.indexOf(Characters.get(i));
+                            System.out.println(indexOfCharacter + ". " + Characters.get(i).getName());
                         }
-                        System.out.println("Type in the Name of the Character you want to edit :");
                         Scanner sc = new Scanner(System.in);
-                        String characterToEdit = sc.nextLine();
-                        for (int i = 0; i < Characters.size(); i++) {
-                            if (characterToEdit.equals(Characters.get(i).getName())) {
-                                CharacterToEdit = Characters.get(i);
-                            }
-                        }
+                        int editChoice = sc.nextInt();
+                        CharacterToEdit = Characters.get(editChoice);
                         if (CharacterToEdit != null) {
+                            
                             CharacterToEdit.editCharacter();
                         }
                     } else {
-                        System.out.println("There is no Character to edit \n");
+                        System.out.println("There is no Character to edit");
                         startMenuChoice = 0;
                         break;
                     }
                     startMenuChoice = 0;
                     break;
-                case 4:
-                    System.out.println("Delete Character");
+                case 4: // Delete Character
+                    if (!Characters.isEmpty()) {
+                        System.out.println("Which character do you want to Delete ? (type the number of the character)");
+                        for (int i = 0; i < Characters.size(); i++) {
+                            int indexOfCharacter = Characters.indexOf(Characters.get(i));
+                            System.out.println(indexOfCharacter + ". " + Characters.get(i).getName());
+                        }
+                        Scanner sc = new Scanner(System.in);
+                        int deleteChoice = sc.nextInt();
+                        Character deletedWarrior = Characters.get(deleteChoice);
+                        Characters.remove(deleteChoice);
+                        System.out.println("you deleted " + deletedWarrior.getName());
+                    }
                     startMenuChoice = 0;
                     break;
             }
