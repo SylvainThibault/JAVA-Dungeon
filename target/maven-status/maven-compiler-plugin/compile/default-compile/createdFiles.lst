@@ -1,4 +1,10 @@
 dungeon\Character.class
-dungeon\Main.class
+dungeon\Walkthrough.class
 dungeon\Magician.class
+dungeon\Spell.class
+dungeon\Main$DeleteClass.class
+dungeon\Main.class
 dungeon\Warrior.class
+dungeon\Main$EditClass.class
+dungeon\Weapon.class
+dungeon\CharacterIndexException.class

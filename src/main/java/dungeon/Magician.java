@@ -13,6 +13,19 @@ public class Magician extends Character {
     private int philterCount = 0;
 
     /**
+     * Sets spells.
+     *
+     * @param spell the spell
+     */
+    public void setSpells(Spell spell) {
+        this.spells.add(spell);
+    }
+
+    public Spell getSpell(int indexOfSpell) {
+        return spells.get(indexOfSpell);
+    }
+
+    /**
      * Gets philter count.
      *
      * @return the philter count
@@ -63,11 +76,45 @@ public class Magician extends Character {
         Scanner sc = new Scanner(System.in);
         String nameOfSpell = sc.nextLine();
 
-        Integer randomNum = ThreadLocalRandom.current().nextInt(0, 11);
+        Integer randomNum = ThreadLocalRandom.current().nextInt(1, 10);
         System.out.println("Your " + nameOfSpell + " has the random strength of : " + randomNum);
 
         Spell spell = new Spell(nameOfSpell, randomNum);
         spells.add(spell);
+    }
+
+    public void addPhilter() {
+        if (this.getPhilterCount() < 3) {
+            System.out.println("\nEnter the name of your new protection Philter : ");
+            Scanner sc = new Scanner(System.in);
+            String nameOfPhilter = sc.nextLine();
+            System.out.println("Your new protection Philter is : " + nameOfPhilter);
+
+            this.setPhilter(nameOfPhilter);
+        } else {
+            System.out.println("Yo baggo'philter is full, yo!");
+        }
+    }
+
+    public void removeSpell(String characterName) {
+        // Display Spells
+        System.out.println("\n>>>> " + characterName + "'s Spells");
+        for (int i = 0; i < spells.size(); i++) {
+            Spell SpellItem = spells.get(i);
+            int indexOfSpell = spells.indexOf(SpellItem);
+            System.out.println("\t" + indexOfSpell + ". " + SpellItem.toString());
+        }
+        System.out.println("\nWhich Spell do you want to remove ? ( Type in the number of the Spell )");
+        Scanner sc = new Scanner(System.in);
+        try {
+            int SpellChoice = sc.nextInt();
+            sc.nextLine();
+            Spell deletedSpell = spells.get(SpellChoice);
+            spells.remove(SpellChoice);
+            System.out.println("You removed " + deletedSpell.getspellName() + " from the bag.");
+        } catch(IndexOutOfBoundsException e){
+            System.out.println("Come ooooooooon...");
+        }
     }
 
     @Override

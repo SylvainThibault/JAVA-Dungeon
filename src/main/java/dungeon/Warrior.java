@@ -12,9 +12,22 @@ public class Warrior extends Character {
     /**
      * The Weapons.
      */
-    ArrayList<Weapon> weapons = new ArrayList<>();
+    private ArrayList<Weapon> weapons = new ArrayList<>();
+
     private String shields[] = new String[3];
     private int shieldCount = 0;
+    /**
+     * Sets weapons.
+     *
+     * @param weapon the weapon
+     */
+    public void setWeapons(Weapon weapon) {
+        this.weapons.add(weapon);
+    }
+
+    public Weapon getWeapon(int indexOfWeapon) {
+        return weapons.get(indexOfWeapon);
+    }
 
     /**
      * Gets shield count.
@@ -67,16 +80,54 @@ public class Warrior extends Character {
         Scanner sc = new Scanner(System.in);
         String nameOfWeapon = sc.nextLine();
 
-        Integer randomNum = ThreadLocalRandom.current().nextInt(0, 11);
+        Integer randomNum = ThreadLocalRandom.current().nextInt(1, 10);
         System.out.println("Your " + nameOfWeapon + " has the random strength of : " + randomNum);
 
         Weapon weapon = new Weapon(nameOfWeapon, randomNum);
         weapons.add(weapon);
     }
 
+    /**
+     * Add shield.
+     */
+    public void addShield() {
+        if (this.getShieldCount() < 3) {
+            System.out.println("\nEnter the name of your Shield : ");
+            Scanner sc = new Scanner(System.in);
+            String nameOfShield = sc.nextLine();
+            System.out.println("Your new Shield is : " + nameOfShield);
+
+            this.setShield(nameOfShield);
+        } else {
+            System.out.println("Yo baggo'shields is full, yo!");
+        }
+    }
+
+    public void removeWeapon(String characterName) {
+        // Display Weapons
+        System.out.println("\n>>>> " + characterName + "'s weapons");
+        for (int i = 0; i < weapons.size(); i++) {
+            Weapon weaponItem = weapons.get(i);
+            int indexOfWeapon = weapons.indexOf(weaponItem);
+            System.out.println("\t" + indexOfWeapon + ". " + weaponItem.toString());
+        }
+        System.out.println("\nWhich Weapon do you want to remove ? ( Type in the number of the weapon )");
+        Scanner sc = new Scanner(System.in);
+        try {
+            int weaponChoice = sc.nextInt();
+            sc.nextLine();
+            Weapon deletedWeapon = weapons.get(weaponChoice);
+            weapons.remove(weaponChoice);
+            System.out.println("You removed " + deletedWeapon.getWeaponName() + " from the bag.");
+        } catch(IndexOutOfBoundsException e){
+            System.out.println("Come ooooooooon...");
+        }
+    }
+
     @Override
     public void displayCharacter() {
         super.displayCharacter();
+
         // Display Weapons
         System.out.println("\n***** Warrior's weapons *****");
         for (Weapon weapon : weapons) {

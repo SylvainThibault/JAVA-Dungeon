@@ -100,45 +100,11 @@ public abstract class Character {
                         "\nYour character's strength is : " + this.getStrength();
     }
 
-
-    /**
-     * Edit character.
-     */
-    public void editCharacter() {
-        Walkthrough editMenu = new Walkthrough();
-        int stuffToEdit = editMenu.editMenu();
-
-        do {
-            switch (stuffToEdit) {
-                case 0:
-                    stuffToEdit = editMenu.editMenu();
-                    break;
-                case 1:
-                    System.out.println("\nEnter a new Name :");
-                    Scanner sc = new Scanner(System.in);
-                    String newName = sc.nextLine();
-                    this.setName(newName);
-                    System.out.println("Your character's new Name is : " + newName + "\n");
-                    stuffToEdit = 0;
-                    break;
-                case 2:
-                    System.out.println("\nSet a new Life :");
-                    Scanner sc2 = new Scanner(System.in);
-                    int newLife = sc2.nextInt();
-                    this.setLife(newLife);
-                    System.out.println("Your character's new Life is set to : " + newLife + "\n");
-                    stuffToEdit = 0;
-                    break;
-                case 3:
-                    System.out.println("\nSet a new Strength :");
-                    Scanner sc3 = new Scanner(System.in);
-                    int newStrength = sc3.nextInt();
-                    this.setStrength(newStrength);
-                    System.out.println("Your character's new Strength is set to : " + newStrength + "\n");
-                    stuffToEdit = 0;
-                    break;
-            }
-        } while (stuffToEdit != 4);
+    public void newName() {
+        System.out.println("\nEnter a new Name :");
+        Scanner sc = new Scanner(System.in);
+        String newName = sc.nextLine();
+        this.setName(newName);
+        System.out.println("Your character's new Name is : " + newName + "\n");
     }
-
 }
